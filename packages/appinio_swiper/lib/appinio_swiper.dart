@@ -30,6 +30,12 @@ class AppinioSwiper extends StatefulWidget {
   /// set to true if the user can unswipe as many cards as possible
   final bool unlimitedUnswipe;
 
+  /// set to true if the user can swipe left and right
+  final bool horizontalSwipeEnabled;
+
+  /// set to true if the user can swipe up and down
+  final bool verticalSwipeEnabled;
+
   /// function that gets called with the new index and detected swipe direction when the user swiped or swipe is triggered by controller
   final Function onSwipe;
 
@@ -59,6 +65,8 @@ class AppinioSwiper extends StatefulWidget {
     this.isDisabled = false,
     this.allowUnswipe = true,
     this.unlimitedUnswipe = false,
+    this.horizontalSwipeEnabled = true,
+    this.verticalSwipeEnabled = true,
     this.onTapDisabled = emptyFunction,
     this.onSwipe = emptyFunctionIndex,
     this.onEnd = emptyFunction,
@@ -98,8 +106,8 @@ class _AppinioSwiperState extends State<AppinioSwiper>
   bool _vertical = false;
   bool _horizontal = false;
   bool _isUnswiping = false;
-  int _swipedDirectionVertical = 0; //-1 left, 1 right
-  int _swipedDirectionHorizontal = 0; //-1 bottom, 1 top
+  int _swipedDirectionVertical = 0; //-1 bottom, 1 top
+  int _swipedDirectionHorizontal = 0; //-1 left, 1 right
 
   AppinioUnswipeCard? _lastCard;
   // ignore: prefer_final_fields
@@ -339,8 +347,8 @@ class _AppinioSwiperState extends State<AppinioSwiper>
         onPanUpdate: (tapInfo) {
           if (!widget.isDisabled) {
             setState(() {
-              _left += tapInfo.delta.dx;
-              _top += tapInfo.delta.dy;
+              _left += widget.horizontalSwipeEnabled ? tapInfo.delta.dx : 0;
+              _top += widget.verticalSwipeEnabled ? tapInfo.delta.dy : 0;
               _total = _left + _top;
 
               widget.onDrag?.call(_left, _top);

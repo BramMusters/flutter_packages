@@ -16,6 +16,7 @@ We build this package because we wanted to:
 - NEW: add functions while un-/swiping, on end or when the swiper is disabled
 - NEW: detect the direction (left, right, top, bottom) in which the card was swiped away
 - NEW: unswipe all cards
+- NEW: enable or disable horizontal and vertical swiping
 
 ## ❗NEW Features ❗
 
@@ -42,6 +43,10 @@ We've added the function `unswipe` that now gets returned with the boolean `true
 ### Trigger swipe through controller
 
 You can now trigger the swipe with our `AppinioSwiperController`. Just like the unswipe call, you can call the `swipe` trough the controller anywhere you want. Just make sure to pass the controller to the parameter `controller` from our `AppinioSwiper`.
+
+### Toggle for horizontal and vertical swiping
+
+You can now use the `horizontalSwipeEnabled` and `verticalSwipeEnabled` to enable or disable swiping in the horizontal (left, right) and vertical (up, down) directions.
 
 ## Show Cases
 
@@ -140,23 +145,25 @@ class Example extends StatelessWidget {
 
 #### Basic
 
-| Parameter        | Default                                            | Description                                                                                                                 | Required |
-| ---------------- | :------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------- | :------: |
-| cards            | -                                                  | List of Widgets for the swiper                                                                                              |   true   |
-| controller       | -                                                  | Trigger unswipe                                                                                                             |  false   |
-| padding          | EdgeInsets.symmetric(horizontal: 20, vertical: 25) | Control swiper padding                                                                                                      |  false   |
-| duration         | 200 milliseconds                                   | The duration that every animation should last                                                                               |  false   |
-| maxAngle         | 30                                                 | Maximum angle the card reaches while swiping                                                                                |  false   |
-| threshold        | 50                                                 | Threshold from which the card is swiped away                                                                                |  false   |
-| isDisabled       | false                                              | Set to `true` if swiping should be disabled, has no impact when triggered from the outside                                  |  false   |
-| onTapDisabled    | -                                                  | Function that get triggered when the swiper is disabled                                                                     |  false   |
-| onSwipe          | -                                                  | Called with the new index and detected swipe direction when the user swiped                                                 |  false   |
-| onDrag(left, top)          | -                                                  | Called every time the card is being dragged and contains the left and top parameters in the callback function                                                 |  false   |
-| onEnd            | -                                                  | Called when there is no Widget left to be swiped away                                                                       |  false   |
-| direction        | right                                              | Direction in which the card is swiped away when triggered from the outside                                                  |  false   |
-| allowUnswipe     | true                                               | Set to `false` if unswipe should be disabled away                                                                           |  false   |
-| unlimitedUnswipe | false                                              | Set to `true` if the user can unswipe as many cards as possible                                                             |  false   |
-| unswipe          | -                                                  | Called with the boolean `true` when the last card gets unswiped and with the boolean `false` if there is no card to unswipe |  false   |
+| Parameter              | Default                                            | Description                                                                                                                 | Required |
+| ---------------------- | :------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------- | :------: |
+| cards                  | -                                                  | List of Widgets for the swiper                                                                                              |   true   |
+| controller             | -                                                  | Trigger unswipe                                                                                                             |  false   |
+| padding                | EdgeInsets.symmetric(horizontal: 20, vertical: 25) | Control swiper padding                                                                                                      |  false   |
+| duration               | 200 milliseconds                                   | The duration that every animation should last                                                                               |  false   |
+| maxAngle               | 30                                                 | Maximum angle the card reaches while swiping                                                                                |  false   |
+| threshold              | 50                                                 | Threshold from which the card is swiped away                                                                                |  false   |
+| isDisabled             | false                                              | Set to `true` if swiping should be disabled, has no impact when triggered from the outside                                  |  false   |
+| onTapDisabled          | -                                                  | Function that get triggered when the swiper is disabled                                                                     |  false   |
+| onSwipe                | -                                                  | Called with the new index and detected swipe direction when the user swiped                                                 |  false   |
+| onEnd                  | -                                                  | Called when there is no Widget left to be swiped away                                                                       |  false   |
+| direction              | right                                              | Direction in which the card is swiped away when triggered from the outside                                                  |  false   |
+| allowUnswipe           | true                                               | Set to `false` if unswipe should be disabled away                                                                           |  false   |
+| unlimitedUnswipe       | false                                              | Set to `true` if the user can unswipe as many cards as possible                                                             |  false   |
+| unswipe                | -                                                  | Called with the boolean `true` when the last card gets unswiped and with the boolean `false` if there is no card to unswipe |  false   |
+| horizontalSwipeEnabled | true                                               | Allow swiping in the left and right directions                                                                              |  false   |
+| verticalSwipeEnabled   | true                                               | Allow swiping in the up and down directions                                                                                 |  false   |
+| onDrag(left, top)      | -                                                  | Called every time the card is being dragged and contains the left and top parameters in the callback function               |  false   |
 
 #### Controller
 
