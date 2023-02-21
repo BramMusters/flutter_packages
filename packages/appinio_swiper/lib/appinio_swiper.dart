@@ -45,6 +45,9 @@ class AppinioSwiper extends StatefulWidget {
   /// function that gets called when the card is being dragged
   final Function(double left, double top)? onDrag;
 
+  /// function that gets called when the dragging stopped but the onSwipe was not triggered due to a too low threshold
+  final Function? onDragEnd;
+
   /// function that gets triggered when the swiper is disabled
   final Function onTapDisabled;
 
@@ -249,6 +252,8 @@ class _AppinioSwiperState extends State<AppinioSwiper>
               _lastCard = null;
             }
             _isUnswiping = false;
+          } else if (_swipeTyp == 3) {
+            widget.onDragEnd?.call();
           }
           _animationController.reset();
           _left = 0;
